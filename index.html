@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>射击游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>🔫 射击游戏</h1>
+        
+        <div class="game-info">
+            <div class="player-info">
+                <div class="health-bar">
+                    <span>你的血量: </span>
+                    <div class="bar-container">
+                        <div class="health-fill" id="playerHealthBar" style="width: 100%"></div>
+                    </div>
+                    <span id="playerHealth">10 / 10</span>
+                </div>
+                <div class="ammo-info">
+                    <span>子弹: </span>
+                    <span id="ammoCount">8 / 8</span>
+                </div>
+            </div>
+            
+            <div class="enemy-info">
+                <div class="health-bar">
+                    <span>对手血量: </span>
+                    <div class="bar-container">
+                        <div class="health-fill enemy" id="enemyHealthBar" style="width: 100%"></div>
+                    </div>
+                    <span id="enemyHealth">10 / 10</span>
+                </div>
+            </div>
+        </div>
+        
+        <canvas id="gameCanvas" width="800" height="500"></canvas>
+        
+        <div class="controls">
+            <div class="settings-panel">
+                <h3>⚙️ 游戏设置</h3>
+                <div class="setting-item">
+                    <label for="ammoSetting">子弹数量：</label>
+                    <input type="number" id="ammoSetting" min="1" max="50" value="8" />
+                    <span id="ammoValue">8</span>
+                </div>
+                <div class="setting-item">
+                    <label for="bulletSpeedSetting">子弹速度：</label>
+                    <input type="range" id="bulletSpeedSetting" min="3" max="20" value="8" step="1" />
+                    <span id="speedValue">8</span>
+                </div>
+                <button id="applySettingsBtn">应用设置</button>
+            </div>
+            
+            <div class="instructions">
+                <p>🎯 <strong>游戏说明：</strong></p>
+                <p>• <strong>WASD</strong> 键控制移动</p>
+                <p>• <strong>空格键</strong> 射击（鼠标瞄准方向）</p>
+                <p>• 你有 <span id="ammoDisplay">8</span> 发子弹，每次击中对手造成2点伤害</p>
+                <p>• 对手会移动并反击，被击中也会掉2点血</p>
+                <p>• 先击败对手或先被击败的一方失败</p>
+            </div>
+            <div class="buttons">
+                <button id="startBtn">开始游戏</button>
+                <button id="reloadBtn">重新装弹</button>
+                <button id="resetBtn">重新开始</button>
+            </div>
+        </div>
+        
+        <div id="gameOver" class="game-over hidden">
+            <h2 id="gameOverTitle">游戏结束</h2>
+            <p id="gameOverMessage"></p>
+            <button id="restartBtn">再来一局</button>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>

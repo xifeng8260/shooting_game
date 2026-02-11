@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.game-container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 36px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    gap: 20px;
+}
+
+.player-info, .enemy-info {
+    flex: 1;
+}
+
+.health-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.health-bar span {
+    font-weight: bold;
+    color: #333;
+    min-width: 80px;
+    text-align: left;
+}
+
+.bar-container {
+    flex: 1;
+    height: 25px;
+    background: #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #333;
+}
+
+.health-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #27ae60 0%, #2ecc71 100%);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.health-fill.enemy {
+    background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.ammo-info {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+#gameCanvas {
+    border: 4px solid #333;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%);
+    display: block;
+    margin: 0 auto 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: crosshair;
+}
+
+#gameCanvas:active {
+    cursor: crosshair;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.instructions {
+    background: #f0f7ff;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.instructions p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+.instructions p:first-child {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.settings-panel {
+    background: #f0f7ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #667eea;
+}
+
+.settings-panel h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.setting-item label {
+    font-weight: bold;
+    color: #333;
+    min-width: 100px;
+    text-align: left;
+}
+
+.setting-item input[type="number"] {
+    width: 80px;
+    padding: 8px;
+    border: 2px solid #667eea;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.setting-item input[type="range"] {
+    flex: 1;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.setting-item input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #667eea;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.setting-item input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #667eea;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.setting-item span {
+    font-weight: bold;
+    color: #667eea;
+    min-width: 30px;
+    text-align: center;
+}
+
+#applySettingsBtn {
+    width: 100%;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+}
+
+#applySettingsBtn:hover {
+    background: linear-gradient(135deg, #229954 0%, #27ae60 100%);
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#reloadBtn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+#resetBtn {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    border: 4px solid #667eea;
+}
+
+.game-over h2 {
+    color: #e74c3c;
+    margin-bottom: 20px;
+    font-size: 32px;
+}
+
+.game-over p {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none;
+}
+
+#restartBtn {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+}
+
+#restartBtn:hover {
+    background: linear-gradient(135deg, #229954 0%, #27ae60 100%);
+}
+
+/* 瞄准线效果 */
+.crosshair {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 0, 0, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+}
